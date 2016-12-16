@@ -14,22 +14,22 @@ For more info, tutorials and documentation please visit the [official site](http
 
 ##Supported Scala versions
 
-2.10, 2.11
+2.12 (use org.sorm-framework/sorm for Scala 2.10 and 2.11) github.com/scala212-forks
 
 ##Maven
 
 SORM is distributed in Maven Central, here's a dependency to the latest release version:
 
     <dependency>
-      <groupId>org.sorm-framework</groupId>
+      <groupId>com.github.scala212-forks</groupId>
       <artifactId>sorm</artifactId>
       <version>0.3.22-SNAPSHOT</version>
     </dependency>
 
 ##SBT
 
-    libraryDependencies += "org.sorm-framework" % "sorm" % "0.3.22-SNAPSHOT"
+    libraryDependencies += "com.github.scala212-forks" %% "sorm" % "0.3.22-SNAPSHOT"
 
 ---
 
-[![Build Status](https://travis-ci.org/sorm/sorm.png?branch=master)](https://travis-ci.org/sorm/sorm)
+[![Build Status](https://travis-ci.org/scala212-forks/sorm.png?branch=master)](https://travis-ci.org/scala212-forks/sorm)
