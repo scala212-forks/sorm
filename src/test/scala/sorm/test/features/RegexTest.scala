@@ -7,7 +7,7 @@ import sorm.core.DbType
 import sorm.test.MultiInstanceSuite
 
 @org.junit.runner.RunWith(classOf[junit.JUnitRunner])
-class RegexTest extends FunSuite with ShouldMatchers with MultiInstanceSuite {
+class RegexTest extends FunSuite with Matchers with MultiInstanceSuite {
 
   def entities = Set() + Entity[User]()
   override def dbTypes = DbType.H2 :: DbType.Mysql :: DbType.Postgres :: Nil

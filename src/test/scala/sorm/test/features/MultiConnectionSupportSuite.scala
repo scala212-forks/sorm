@@ -1,7 +1,6 @@
 package sorm.test.features
 
-import org.scalatest.FunSuite
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.{FunSuite, Matchers}
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
@@ -14,7 +13,7 @@ object MultiConnectionSupportSuite {
   case class A ( a : Int )
 }
 @RunWith(classOf[JUnitRunner])
-class MultiConnectionSupportSuite extends FunSuite with ShouldMatchers with MultiInstanceSuite {
+class MultiConnectionSupportSuite extends FunSuite with Matchers with MultiInstanceSuite {
   import MultiConnectionSupportSuite._
 
   override def entities = Entity[A]() :: Nil

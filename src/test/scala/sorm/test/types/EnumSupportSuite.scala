@@ -1,7 +1,6 @@
 package sorm.test.types
 
-import org.scalatest.{SequentialNestedSuiteExecution, FunSuite}
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.{SequentialNestedSuiteExecution, FunSuite, Matchers}
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
@@ -10,7 +9,7 @@ import sext._, embrace._
 import sorm.test.MultiInstanceSuite
 
 @RunWith(classOf[JUnitRunner])
-class EnumSupportSuite extends FunSuite with ShouldMatchers with MultiInstanceSuite {
+class EnumSupportSuite extends FunSuite with Matchers with MultiInstanceSuite {
   import EnumSupportSuite._
 
   def entities = Set() + Entity[A]()

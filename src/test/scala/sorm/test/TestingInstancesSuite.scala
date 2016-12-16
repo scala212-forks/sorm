@@ -1,7 +1,6 @@
 package sorm.test
 
-import org.scalatest.FunSuite
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.{FunSuite, Matchers}
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
@@ -9,7 +8,7 @@ import sorm._
 import core.DbType
 
 @RunWith(classOf[JUnitRunner])
-class TestingInstancesSuite extends FunSuite with ShouldMatchers {
+class TestingInstancesSuite extends FunSuite with Matchers {
   import TestingInstancesSuite._
 
   test("Sequentially accessing instances gets them cleaned up") {

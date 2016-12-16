@@ -1,7 +1,6 @@
 package sorm.test.general
 
-import org.scalatest.FunSuite
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.{FunSuite, Matchers}
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
@@ -23,7 +22,7 @@ object ArtistDbSuite {
 
 }
 @RunWith(classOf[JUnitRunner])
-class ArtistDbSuite extends FunSuite with ShouldMatchers with MultiInstanceSuite {
+class ArtistDbSuite extends FunSuite with Matchers with MultiInstanceSuite {
 
   import ArtistDbSuite._
 
@@ -84,7 +83,7 @@ class ArtistDbSuite extends FunSuite with ShouldMatchers with MultiInstanceSuite
         .whereEqual("names.value(1)", "Rolling Stones")
         .fetchOne()
         .get
-        .names(en)(1) should be === "Rolling Stones"
+        .names(en)(1) shouldEqual "Rolling Stones"
     }
     test(dbId + " - Offset"){
       pending
@@ -93,7 +92,7 @@ class ArtistDbSuite extends FunSuite with ShouldMatchers with MultiInstanceSuite
       pending
     }
     test(dbId + " - Ordering"){
-      db.query[Artist].order("id", true).fetch().map(_.id) should equal (godsmack.id :: direStraits.id :: rollingStones.id :: kino.id :: nirvana.id :: metallica.id :: Nil)
+      db.query[Artist].order("id", true).fetch().map(_.id) shouldEqual (godsmack.id :: direStraits.id :: rollingStones.id :: kino.id :: nirvana.id :: metallica.id :: Nil)
     }
     test(dbId + " - Contains"){
       pending
@@ -106,14 +105,14 @@ class ArtistDbSuite extends FunSuite with ShouldMatchers with MultiInstanceSuite
         .whereEqual("styles.item", metal)
         .fetch()
         .flatMap{_.names.values.head}
-        .toSet should be === Set("Metallica", "Godsmack")
+        .toSet shouldEqual Set("Metallica", "Godsmack")
     }
     test(dbId + " - Map, Set, Seq deep path"){
       db.query[Artist]
         .whereEqual("styles.item.names.value.item", "Hard Rock")
         .fetch()
         .flatMap{_.names.values.head}
-        .toSet should be === Set("Metallica", "Nirvana", "Godsmack")
+        .toSet shouldEqual Set("Metallica", "Nirvana", "Godsmack")
     }
     test(dbId + " - Results have correct id property"){
       pending
@@ -121,13 +120,13 @@ class ArtistDbSuite extends FunSuite with ShouldMatchers with MultiInstanceSuite
       // assumption of the test is invalid: A database does not necessarily
       // have to return data in the order that they were inserted, and the
       // query does not include an ORDER BY clause.
-      // db.query[Artist].fetchOne().map{_.id} should be === Some(metallica.id)
+      // db.query[Artist].fetchOne().map{_.id} shouldEqual Some(metallica.id)
     }
     test(dbId + " - Query by id"){
       db.query[Artist].whereEqual("id", metallica.id).fetchOne()
-        .map{_.names.values.head.head}.get should be === "Metallica"
+        .map{_.names.values.head.head}.get shouldEqual "Metallica"
       db.query[Artist].whereEqual("id", kino.id).fetchOne()
-        .map{_.names.values.head.head}.get should be === "Kino"
+        .map{_.names.values.head.head}.get shouldEqual "Kino"
     }
   }
 }

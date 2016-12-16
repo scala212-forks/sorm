@@ -1,14 +1,13 @@
 package sorm.persisted
 
-import org.scalatest.FunSuite
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.{FunSuite, Matchers}
 import sorm.persisted.PersistedSuite._
 import org.scalatest.junit.JUnitRunner
 import org.junit.runner.RunWith
 import sorm._
 
 @RunWith(classOf[JUnitRunner])
-class PersistedSuite extends FunSuite with ShouldMatchers {
+class PersistedSuite extends FunSuite with Matchers {
 
   test("Different persisted ids make otherwise equaling objects have different hashcodes") {
     Persisted(Genre("a"), 1).hashCode should not equal(Persisted(Genre("a"), 2).hashCode)
@@ -59,12 +58,15 @@ class PersistedSuite extends FunSuite with ShouldMatchers {
     )
   }
   test("dynamic persisted fails on incorrect map") {
-    evaluating {Persisted[Artist](Map("name" -> "Nirvana"), 35)} should produce[Exception]
+    intercept[Exception] {
+      Persisted[Artist](Map("name" -> "Nirvana"), 35)
+    }
   }
   test("persisted on persisted") {
-    evaluating { Persisted(Persisted(Artist("Nirvana", Set()), 2), 4) }
-      .should( produce[Exception])
-      .getMessage should be ("Persisted on persisted called")
+    val thrown = intercept[Exception] {
+      Persisted(Persisted(Artist("Nirvana", Set()), 2), 4)
+    }
+    thrown.getMessage should be ("Persisted on persisted called")
   }
 }
 object PersistedSuite {

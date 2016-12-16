@@ -1,7 +1,6 @@
 package sorm.test.features
 
-import org.scalatest.{BeforeAndAfterAll, FunSuite}
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.{BeforeAndAfterAll, FunSuite, Matchers}
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
@@ -9,7 +8,7 @@ import sorm._
 import sorm.test.MultiInstanceSuite
 
 @RunWith(classOf[JUnitRunner])
-class InFilterTest extends FunSuite with ShouldMatchers with MultiInstanceSuite {
+class InFilterTest extends FunSuite with Matchers with MultiInstanceSuite {
   import InFilterTest._
 
   def entities = Set() + Entity[A]()

@@ -1,12 +1,12 @@
 package sorm.joda
 
-import org.scalatest.FunSuite
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.{FunSuite, Matchers}
+
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
-class ExtensionsTest extends FunSuite with ShouldMatchers {
+class ExtensionsTest extends FunSuite with Matchers {
   import Extensions._
   import org.joda.time._
 

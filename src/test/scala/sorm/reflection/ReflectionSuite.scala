@@ -1,12 +1,11 @@
 package sorm.reflection
 
-import org.scalatest.FunSuite
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.{FunSuite, Matchers}
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
-class ReflectionSuite extends FunSuite with ShouldMatchers {
+class ReflectionSuite extends FunSuite with Matchers {
   import ReflectionSuite._
 
 //  from mirrorquirks
@@ -25,17 +24,17 @@ class ReflectionSuite extends FunSuite with ShouldMatchers {
 //    be("sorm.mirrorQuirks.MirrorQuirksTest.NestedClasses#NestedClass#DeeplyNestedClass")
 //  }
 //  test("name of type with mixin") {
-//    name(tag[Artist with Mixin].sym) should equal(name(tag[Artist].sym))
+//    name(tag[Artist with Mixin].sym) shouldEqual(name(tag[Artist].sym))
 //  }
 //  test("properties of types with mixins") {
 //    println(tag[Artist with Mixin].tpe.kind)
 //    println(tag[Artist].tpe.kind)
 //    println(isMixedIn(tag[Artist with Mixin].tpe))
-//    properties(tag[Artist with Mixin].tpe) should equal (properties(tag[Artist].tpe))
+//    properties(tag[Artist with Mixin].tpe) shouldEqual (properties(tag[Artist].tpe))
 //  }
   test("propertyValue of Persisted"){
     import sorm.persisted._
-    Reflection[Genre].propertyValue("name", Persisted(Genre("A"), 1)) should equal ("A")
+    Reflection[Genre].propertyValue("name", Persisted(Genre("A"), 1)) shouldEqual ("A")
   }
   test("Generics have effect on hashCode"){
     Reflection[Seq[Int]].hashCode should not equal(Reflection[Seq[Any]].hashCode)
@@ -54,17 +53,17 @@ class ReflectionSuite extends FunSuite with ShouldMatchers {
     )
   }
   test("Reflections on same type must be identical"){
-    Reflection[String] should equal (Reflection[String])
-    Reflection[Seq[String]] should equal (Reflection[Seq[String]])
+    Reflection[String] shouldEqual (Reflection[String])
+    Reflection[Seq[String]] shouldEqual (Reflection[Seq[String]])
   }
   test("Reflection extending type must not equal it's ancestor"){
     Reflection[String] should not equal (Reflection[Any])
   }
   test("Int inheritance"){
-    (Reflection[Int] <:< Reflection[AnyVal]) should equal (true)
-    (Reflection[Int] <:< Reflection[Any]) should equal (true)
-    (Reflection[Int] <:< Reflection[Int]) should equal (true)
-    (Reflection[Int] <:< Reflection[AnyRef]) should equal (false)
+    (Reflection[Int] <:< Reflection[AnyVal]) shouldEqual (true)
+    (Reflection[Int] <:< Reflection[Any]) shouldEqual (true)
+    (Reflection[Int] <:< Reflection[Int]) shouldEqual (true)
+    (Reflection[Int] <:< Reflection[AnyRef]) shouldEqual (false)
   }
   test("String inheritance"){
     assert( Reflection[String] <:< Reflection[Any] )
@@ -87,7 +86,7 @@ class ReflectionSuite extends FunSuite with ShouldMatchers {
   test("property value") {
     val artist = Artist(234, "Nirvana", Set(Genre("Grunge"), Genre("Rock")), Set("kurt-cobain", "grunge", "nirvana"))
 
-    Reflection[Artist].propertyValue("name", artist) should equal("Nirvana")
+    Reflection[Artist].propertyValue("name", artist) shouldEqual("Nirvana")
   }
   test("signature of class with non-Predef generics") {
     Reflection[collection.mutable.Map[collection.mutable.HashSet[String], Int]].signature should
@@ -102,7 +101,7 @@ class ReflectionSuite extends FunSuite with ShouldMatchers {
     equal("Seq[_]")
   }
   test("String signature"){
-    Reflection[String].signature should be === "String"
+    Reflection[String].signature shouldEqual "String"
   }
   test("signature of class with no generics") {
     Reflection[Int].signature should

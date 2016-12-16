@@ -3,7 +3,7 @@ package sorm.test.issues
 import org.scalatest._
 
 @org.junit.runner.RunWith(classOf[junit.JUnitRunner])
-class Issue40Test extends FunSuite with ShouldMatchers {
+class Issue40Test extends FunSuite with Matchers {
   import sorm._
   import Issue40Test._
 

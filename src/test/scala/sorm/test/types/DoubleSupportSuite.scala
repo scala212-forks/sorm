@@ -4,7 +4,7 @@ import org.scalatest._
 import sorm._, test._
 
 @org.junit.runner.RunWith(classOf[junit.JUnitRunner])
-class DoubleSupportSuite extends FunSuite with ShouldMatchers with MultiInstanceSuite {
+class DoubleSupportSuite extends FunSuite with Matchers with MultiInstanceSuite {
   import DoubleSupportSuite._
 
   def entities = Set(Entity[A]())
