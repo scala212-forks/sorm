@@ -1,9 +1,9 @@
 language: scala
 scala:
-  - 2.10.4
-  - 2.11.5
-before_script:
+  - 2.11.8
+  - 2.12.1
+before_install:
   - psql -c 'create database test;' -U postgres
   - mysql -e 'create database sorm_test;'
 install: 
-  mvn install -DskipTests=true -Dgpg.skip=true
+  sbt ++$TRAVIS_SCALA_VERSION test

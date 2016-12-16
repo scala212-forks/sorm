@@ -98,7 +98,7 @@ class ReflectionSuite extends FunSuite with Matchers {
   }
   test("signature of class with empty generics") {
     Reflection[Seq[_]].signature should
-    equal("Seq[_]")
+    equal("scala.Seq[_]")
   }
   test("String signature"){
     Reflection[String].signature shouldEqual "String"
