@@ -1,9 +1,8 @@
 import scala.xml.XML
 
 lazy val commonSettings = Seq(
-  organization := "org.sorm-framework",
+  organization := "com.github.scala212-forks",
   name := "sorm",
-  version := "0.3.22-SNAPSHOT",
   scalaVersion := "2.11.8",
   description := "A functional boilerplate-free Scala ORM",
   crossScalaVersions := Seq("2.11.8", "2.12.1")
@@ -38,6 +37,7 @@ lazy val root = project.in(file(".")).settings(commonSettings:_*).
         Some("releases"  at nexus + "service/local/staging/deploy/maven2")
     },
     parallelExecution in Test := false,
+    releasePublishArtifactsAction := PgpKeys.publishSigned.value,
     pomExtra := {
       val xml = XML.loadFile(file("pom-extra.xml"))
       xml.child
