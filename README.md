@@ -16,7 +16,7 @@ For more info, tutorials and documentation please visit the [official site](http
 
 ## Supported Scala versions
 
-2.12 (use org.sorm-framework/sorm for Scala 2.10 and 2.11) github.com/scala212-forks
+2.12 (use org.sorm-framework/sorm for Scala 2.10 and 2.11)
 
 ## Maven
 
